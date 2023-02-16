@@ -1,0 +1,46 @@
+const Model = require('../model');
+const { Visitor } = Model;
+
+const visitorController = {
+  all(req, res) {
+    Visitor.find({})
+      // .populate('manufacturer')
+      .exec((err, visitors) => res.json(visitors))
+  },
+  byId(req, res) {
+    const idParams = req.params.id;
+    Visitor
+      .findOne({ _id: idParams })
+      // .populate('manufacturer')
+      .exec((err, visitor) => res.json(visitor));
+  },
+  create(req, res) {
+    const requestBody = req.body;
+    const newVisitor = new Visitor(requestBody);
+
+    newVisitor.save((err, saved) => {
+      Visitor
+        .findOne({ _id: newVisitor._id })
+        // .populate('manufacturer')
+        .exec((err, visitor) => res.json(visitor))
+    })
+  },
+  update(req, res) {
+    const idParams = req.params.id;
+    const visitor = req.body;
+
+    console.log('idParams', idParams);
+    console.log('visitor', visitor);
+
+    Visitor.updateOne({ _id: idParams }, { ...visitor }, (err, updated) => {
+      res.json(updated);
+    })
+  },
+  remove(req, res) {
+    const idParams = req.params.id;
+
+    Visitor.findOne({ _id: idParams }).remove( (err, removed) => res.json(idParams) )
+  }
+}
+
+module.exports = visitorController;

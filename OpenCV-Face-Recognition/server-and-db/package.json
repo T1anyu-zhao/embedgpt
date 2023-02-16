@@ -1,0 +1,22 @@
+{
+  "name": "myapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "connect-history-api-fallback": "^2.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "firebase": "^9.17.0",
+    "firebase-admin": "^11.5.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "mongoose": "^6.9.0",
+    "mongose": "^0.0.2-security",
+    "morgan": "~1.9.1",
+    "socket.io": "^4.5.4"
+  }
+}

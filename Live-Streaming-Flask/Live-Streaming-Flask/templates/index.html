@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>Live Streaming and Training</title>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+<div class="container">
+    <div class="column-left">
+        <h1 class="title">Live Monitoring</h1>
+        <p class="views">camera: efaeehajgcpo_1 location: fhgeci_pos_1</p>
+        <div class="video-container">
+                <img src="{{ url_for('video_feed') }}" class="image">
+        </div>
+        <div class="info-container">
+            <div class="buttons-container">
+                <button class="like-button">Play</button>
+                <button class="dislike-button">Pause</button>
+                <button class="share-button">Share</button>
+                <button class="save-button">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="column-right" id="info" >
+
+        <div class="box-container">
+            <h2>Other available cameras</h2>
+          <div class="box">
+            <h3>Cam 001</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum nibh sed est pellentesque, at mollis massa commodo.</p>
+          </div>
+          <div class="box">
+            <h3>Cam 013</h3>
+            <p>Ut luctus urna id ex congue, in molestie leo bibendum. Donec eu sapien eu sapien faucibus sollicitudin.</p>
+          </div>
+          <div class="box">
+            <h3>Cam 101</h3>
+            <p>Phasellus euismod dui in dolor mollis, ut blandit erat malesuada. Suspendisse tincidunt vel velit non pulvinar.</p>
+          </div>
+          <div class="box">
+            <h3>Cam 308</h3>
+            <p>Phasellus euismod dui in dolor mollis, ut blandit erat malesuada. Suspendisse tincidunt vel velit non pulvinar.</p>
+          </div>
+        </div>
+    </div>
+{#    <form action="/start" method="POST">#}
+{#        <button type="submit">Start</button>#}
+{#    </form>#}
+</div>
+</main>
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+    <ul>
+      <li><a href="#">Terms of Use</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Cookie Policy</a></li>
+    </ul>
+  </div>
+</footer>
+</body>
+</html>
