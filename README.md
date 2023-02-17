@@ -10,7 +10,7 @@ Red LED & Green LED
 Resistors
 
 ## Install
-Here are the libraries need to be install for the project:
+Libraries need to be install for the raspi project:
 
 `sudo pip3 install opencv_python`
 
@@ -19,6 +19,22 @@ Here are the libraries need to be install for the project:
 `sudo apt-get install libatlas-base-dev`
 
 `sudo apt-get install libjasper-dev`
+
+Starting web app:
+
+Install the required dependencies by running `npm install`
+
+Start the Express server by running `npm run serve`.
+
+Open the app in your browser by navigating to http://localhost:3001.
+
+Run server
+
+Install the necessary dependencies using `npm install`
+
+Start the server using `npm start`
+
+Open your web browser and go to http://localhost:3000
 
 ## Raspi app for face recognition 
 The premise of facial recognition is to identify the resence of a face in the image or video frame which is done with Haar Cascade Algorithm. 
