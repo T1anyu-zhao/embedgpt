@@ -30,9 +30,16 @@ OpenCV already contains many pre-trained classifiers for face, eyes, smile, etc.
 
 
 ## Vue website application
-The Web application can communication with the Raspberry Pi board by http protocol. The board will transmit the message that contains the time, ID and image of visitors. The information will be used for recording in database and representing on the web page. 
+This is a Vue web app for displaying statistics of visitor records. The app allows users to view visitor statistics over time and interact with the data by adding and deleting visitor records.
 
-feature to be added:
+Features
+Visiting record statistics display: The app provides an intuitive graphical representation of visitor statistics over time, making it easy to understand the visitor trends at a glance.
+
+Interactive visitor record management: The app allows users to add new visitor records and delete existing ones through a simple and intuitive user interface.
+
+Secure and reliable: The app communicates with a MongoDB database to store and retrieve visitor records, ensuring the security and reliability of the data.
+
+Feature to be added:
 
 Camera remote streaming: WebRTC is valuable in streaming setups that require real-time latency. Peer-to-peer streaming, which is commonly called “web conferencing” or “video conferencing” is one of the top use cases of WebRTC.
 
