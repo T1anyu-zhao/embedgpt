@@ -3,6 +3,16 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(16,GPIO.OUT)
 GPIO.setup(18,GPIO.OUT)
 
+import time
+import smbus2
+
+si7021_ADD = 0x40
+si7021_READ_TEMPERATURE = 0xF3
+
+bus = smbus2.SMBus(1)
+
+
+
 import cv2
 import numpy as np
 import os 
@@ -38,7 +48,7 @@ def visitHTTP(name, image, date):
             requests.post(base_url + "visitRecords", data=record_json, headers={})
             # update visitor info
             requests.put(base_url + "visitors/" + v_id, data=visitor_json, headers={})
-            print("verified visitor, " + name + " new record made")
+            # print("verified visitor, " + name + " new record made")
             return
         v_json = {
         "name": name,
@@ -48,7 +58,7 @@ def visitHTTP(name, image, date):
     # print(v_json)
     # create new visitor
     requests.post(base_url + "visitors", data=v_json, headers={})
-    print("new visitor " + name + " added")
+    # print("new visitor " + name + " added")
         
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
@@ -61,7 +71,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 id = 0
 
 # names related to ids: example ==> SuperDvD: id=1,  etc
-names = ['None', 'SuperDvD'] 
+names = ['None', 'SuperDvD','WhiteBirds','Stott'] 
 
 # Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
@@ -96,7 +106,7 @@ while True:
         # Check if confidence is less them 100 ==> "0" is perfect match 
         if (confidence < 100):
             id = names[id]
-            confidence = "  {0}%".format(round(100 - confidence))
+            confidence = "  {0}%".format(round(130 - confidence))
         else:
             id = "unknown"
             confidence = "  {0}%".format(round(100 - confidence))
@@ -106,32 +116,47 @@ while True:
 
     cv2.imshow('image', img)    
 
-    if id == 0 or id in nameList:
+    if id == 0 or id == 'unknown':
         print("No new face detected")
         #red led on when unknowm detect
         GPIO.output(16,GPIO.HIGH)
         GPIO.output(18,GPIO.LOW)
         time.sleep(1)
+    else:
+        if id in nameList:
+            print("User " + str(id) + " already exist")
+        else:
+            nameList.append(id)
+            print("New user detect: " + str(id))
+            img = cv2.resize(img,(128,128),interpolation=cv2.INTER_CUBIC)
+            cv2.imwrite('test.jpg',img,[int(cv2.IMWRITE_JPEG_QUALITY),50])
 
+            with open("test.jpg", "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read())
+            date = datetime.now()
+            image = "data:image/jpeg;base64," + str(encoded_string)[2:-1]
+            print("Uploading to web...")
+            visitHTTP(str(id), image, date.strftime("%d/%m/%Y %H:%M:%S"))
 
-    if id != 0 and id not in nameList:
-        nameList.append(id)
-        print("New user detect: " + str(id))
+            #Set up a write transaction that sends the command to measure temperature
+            cmd_meas_temp = smbus2.i2c_msg.write(si7021_ADD,[si7021_READ_TEMPERATURE])
+
+            #Set up a read transaction that reads two bytes of data
+            read_result = smbus2.i2c_msg.read(si7021_ADD,2)
+
+            #Execute the two transactions with a small delay between them
+            bus.i2c_rdwr(cmd_meas_temp)
+            time.sleep(0.1)
+            bus.i2c_rdwr(read_result)
+
+            #convert the result to an int
+            temperature = int.from_bytes(read_result.buf[0]+read_result.buf[1],'big')
+            temperature = temperature*175.72/65536-46.85
+            print("current temp: " + str(temperature)[0:4])
         #green led on when face id detect
         GPIO.output(18,GPIO.HIGH)
         GPIO.output(16,GPIO.LOW)
-        time.sleep(1)
-
-        
-    if id in nameList:
-        img = cv2.resize(img,(128,128),interpolation=cv2.INTER_CUBIC)
-        cv2.imwrite('test.jpg',img,[int(cv2.IMWRITE_JPEG_QUALITY),50])
-
-        with open("test.jpg", "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read())
-        date = datetime.now()
-        image = "data:image/jpeg;base64," + str(encoded_string)[2:-1]
-        visitHTTP(str(id), image, date.strftime("%d/%m/%Y %H:%M:%S"))
+        time.sleep(1)        
 
     k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
     if k == 27:
