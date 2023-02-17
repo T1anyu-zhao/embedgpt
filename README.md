@@ -12,9 +12,9 @@ Resistors
 ## Install
 Here are the libraries need to be install for the project:
 
-sudo pip3 install opencv_python 
+`sudo pip3 install opencv_python`
 
-sudo pip3 install opencv-contrib-python
+`sudo pip3 install opencv-contrib-python`
 
 sudo apt-get install libatlas-base-dev
 
