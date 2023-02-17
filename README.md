@@ -32,6 +32,11 @@ OpenCV already contains many pre-trained classifiers for face, eyes, smile, etc.
 ## Vue website application
 The Web application can communication with the Raspberry Pi board by http protocol. The board will transmit the message that contains the time, ID and image of visitors. The information will be used for recording in database and representing on the web page. 
 
+feature to be added:
+
+Camera remote streaming: WebRTC is valuable in streaming setups that require real-time latency. Peer-to-peer streaming, which is commonly called “web conferencing” or “video conferencing” is one of the top use cases of WebRTC.
+
+
 ## Server and Database
 This project is an Express server that is designed to process visitor records. The server has been built using Node.js and Express, and it allows users to record visitor information and store it in a database for future reference.
 
