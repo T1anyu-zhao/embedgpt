@@ -16,13 +16,13 @@ Here are the libraries need to be install for the project:
 
 `sudo pip3 install opencv-contrib-python`
 
-sudo apt-get install libatlas-base-dev
+`sudo apt-get install libatlas-base-dev`
 
-sudo apt-get install libjasper-dev 
+`sudo apt-get install libjasper-dev`
 
-sudo apt-get install libqtgui4 
+`sudo apt-get install libqtgui4`
 
-sudo apt-get install libqt4-test
+`sudo apt-get install libqt4-test`
 
 
 ## Raspi app for face recognition 
