@@ -20,11 +20,6 @@ Here are the libraries need to be install for the project:
 
 `sudo apt-get install libjasper-dev`
 
-`sudo apt-get install libqtgui4`
-
-`sudo apt-get install libqt4-test`
-
-
 ## Raspi app for face recognition 
 The premise of facial recognition is to identify the resence of a face in the image or video frame which is done with Haar Cascade Algorithm. 
 The code for recognising faces can be devided into three parts, data gathering, train the recognizer and recognition.
