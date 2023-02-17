@@ -26,9 +26,11 @@ The Web application can communication with the Raspberry Pi board by http protoc
 
 
 ## Contributor
-dx320      Obivating \n
-kl2420     KaiwenLiu1227 \n
-az2120     T1anyu-zhao
+dx320      Obivating  
+
+kl2420     KaiwenLiu1227  
+
+az2120     T1anyu-zhao  
 
 ## Reference 
 The project is refer to the tutorial :https://www.hackster.io/mjrobot/real-time-face-recognition-an-end-to-end-project-a10826
