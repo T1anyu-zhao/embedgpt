@@ -29,7 +29,7 @@ Here are the libraries need to be install for the project:
 The premise of facial recognition is to identify the resence of a face in the image or video frame which is done with Haar Cascade Algorithm. 
 The code for recognising faces can be devided into three parts, data gathering, train the recognizer and recognition.
 
-Object Detection using Haar feature-based cascade classifiers is an effective object detection method. It is a machine learning based approach where a cascade function is trained from a lot of positive and negative images. It is then used to detect objects in other images.
+Object Detection using Haar feature-based cascade classifiers is an effective object detection method. It is a machine learning based approach where a cascade function is trained from a lot of positive and negative images. It is then used to detect objects in other images. The algorithm does not require extensive computation and can run in real-time.
 
 OpenCV already contains many pre-trained classifiers for face, eyes, smile, etc. Those XML files can be download from haarcascades directory.
 
